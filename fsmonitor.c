@@ -26,7 +26,6 @@ int read_fsmonitor_extension(struct index_state *istate, const void *data,
 	uint32_t hdr_version;
 	uint32_t ewah_size;
 	struct ewah_bitmap *fsmonitor_dirty;
-	int i;
 	int ret;
 
 	if (sz < sizeof(uint32_t) + sizeof(uint64_t) + sizeof(uint32_t))
