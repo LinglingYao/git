@@ -959,7 +959,8 @@ static int do_pick_commit(enum todo_command command, struct commit *commit,
 		unborn = get_oid("HEAD", &head);
 		if (unborn)
 			oidcpy(&head, current_hash->empty_tree);
-		if (index_differs_from(unborn ? EMPTY_TREE_SHA1_HEX : "HEAD", 0, 0))
+		if (index_differs_from(unborn ? EMPTY_TREE_SHA1_HEX : "HEAD",
+				       NULL, 0))
 			return error_dirty_index(opts);
 	}
 	discard_cache();
@@ -2278,7 +2279,7 @@ int sequencer_continue(struct replay_opts *opts)
 			if (res)
 				goto release_todo_list;
 		}
-		if (index_differs_from("HEAD", 0, 0)) {
+		if (index_differs_from("HEAD", NULL, 0)) {
 			res = error_dirty_index(opts);
 			goto release_todo_list;
 		}
