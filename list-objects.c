@@ -237,6 +237,8 @@ void traverse_commit_list(struct rev_info *revs,
 		if (commit->tree)
 			add_pending_tree(revs, commit->tree);
 		show_commit(commit, data);
+		if (revs->tree_blobs_in_commit_order)
+			traverse_trees_and_blobs(revs, &base_path, show_object, data);
 	}
 	traverse_trees_and_blobs(revs, &base_path, show_object, data);
 
