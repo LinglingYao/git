@@ -4765,10 +4765,9 @@ int diff_opt_parse(struct diff_options *options,
 	else if (!strcmp(arg, "--textconv")) {
 		DIFF_OPT_SET(options, ALLOW_TEXTCONV);
 		DIFF_OPT_SET(options, TEXTCONV_SET_VIA_CMDLINE);
-	} else if (!strcmp(arg, "--no-textconv")) {
+	} else if (!strcmp(arg, "--no-textconv"))
 		DIFF_OPT_CLR(options, ALLOW_TEXTCONV);
-		DIFF_OPT_CLR(options, TEXTCONV_SET_VIA_CMDLINE);
-	} else if (!strcmp(arg, "--ignore-submodules")) {
+	else if (!strcmp(arg, "--ignore-submodules")) {
 		DIFF_OPT_SET(options, OVERRIDE_SUBMODULE_CONFIG);
 		handle_ignore_submodules_arg(options, "all");
 	} else if (skip_prefix(arg, "--ignore-submodules=", &arg)) {
