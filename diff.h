@@ -94,19 +94,15 @@ struct diff_flags {
 	unsigned DEFAULT_FOLLOW_RENAMES:1;
 };
 
-static inline struct diff_flags diff_flags_or(const struct diff_flags *a,
-					      const struct diff_flags *b)
+static inline void diff_flags_or(struct diff_flags *a,
+				 const struct diff_flags *b)
 {
-	struct diff_flags out;
 	char *tmp_a = (char *)a;
-	char *tmp_b = (char *)b;
-	char *tmp_out = (char *)&out;
+	const char *tmp_b = (const char *)b;
 	int i;
 
 	for (i = 0; i < sizeof(struct diff_flags); i++)
-		tmp_out[i] = tmp_a[i] | tmp_b[i];
-
-	return out;
+		tmp_a[i] |= tmp_b[i];
 }
 
 #define DIFF_OPT_TST(opts, flag)	((opts)->flags.flag)

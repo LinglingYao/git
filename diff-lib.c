@@ -547,7 +547,7 @@ int index_differs_from(const char *def, const struct diff_flags *flags,
 	DIFF_OPT_SET(&rev.diffopt, QUICK);
 	DIFF_OPT_SET(&rev.diffopt, EXIT_WITH_STATUS);
 	if (flags)
-		rev.diffopt.flags = diff_flags_or(&rev.diffopt.flags, flags);
+		diff_flags_or(&rev.diffopt.flags, flags);
 	rev.diffopt.ita_invisible_in_index = ita_invisible_in_index;
 	run_diff_index(&rev, 1);
 	object_array_clear(&rev.pending);
